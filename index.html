@@ -777,9 +777,6 @@
                     <button class="btn btn-primary" onclick="downloadQR('svg')">
                         📁 Download SVG
                     </button>
-                    <button class="btn btn-secondary" onclick="saveToHistory()">
-                        💾 Save to History
-                    </button>
                 </div>
 
                 <!-- Batch Generation Section -->
@@ -812,52 +809,7 @@
                     </div>
                 </div>
 
-                <div class="sidebar-section">
-                    <h3 class="sidebar-title">📋 Recent QR Codes</h3>
-                    <div id="historyList">
-                        <p style="color: var(--text-secondary); font-size: 0.875rem;">
-                            Your recent QR codes will appear here
-                        </p>
-                    </div>
-                    <button class="btn btn-secondary" onclick="clearHistory()" style="width: 100%; margin-top: 1rem;">
-                        Clear History
-                    </button>
-                </div>
 
-                <div class="sidebar-section">
-                    <h3 class="sidebar-title">📊 Quick Stats</h3>
-                    <div style="display: grid; gap: 1rem;">
-                        <div style="text-align: center;">
-                            <div style="font-size: 2rem; font-weight: bold; color: var(--primary-color);" id="totalGenerated">0</div>
-                            <div style="font-size: 0.875rem; color: var(--text-secondary);">QR Codes Generated</div>
-                        </div>
-                        <div style="text-align: center;">
-                            <div style="font-size: 2rem; font-weight: bold; color: var(--secondary-color);" id="totalDownloads">0</div>
-                            <div style="font-size: 0.875rem; color: var(--text-secondary);">Downloads</div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="sidebar-section">
-                    <h3 class="sidebar-title">📧 Newsletter</h3>
-                    <p style="font-size: 0.875rem; color: var(--text-secondary); margin-bottom: 1rem;">
-                        Get QR code tips and updates
-                    </p>
-                    <div class="newsletter-form">
-                        <input type="email" placeholder="your@email.com" class="form-input">
-                        <button class="btn btn-primary">Subscribe</button>
-                    </div>
-                </div>
-
-                <div class="sidebar-section">
-                    <h3 class="sidebar-title">🔗 Share</h3>
-                    <div class="social-links">
-                        <a href="#" class="social-link" title="Share on Facebook">📘</a>
-                        <a href="#" class="social-link" title="Share on Twitter">🐦</a>
-                        <a href="#" class="social-link" title="Share on LinkedIn">💼</a>
-                        <a href="#" class="social-link" title="Copy Link">🔗</a>
-                    </div>
-                </div>
             </aside>
 
             <!-- Features Section -->
@@ -1001,24 +953,6 @@
                 </div>
                 
                 <div class="footer-section">
-                    <h3>Quick Links</h3>
-                    <p><a href="#text-tab">Text QR Codes</a></p>
-                    <p><a href="#url-tab">URL QR Codes</a></p>
-                    <p><a href="#wifi-tab">WiFi QR Codes</a></p>
-                    <p><a href="#email-tab">Email QR Codes</a></p>
-                    <p><a href="#phone-tab">Phone QR Codes</a></p>
-                </div>
-                
-                <div class="footer-section">
-                    <h3>Resources</h3>
-                    <p><a href="#faq-section">FAQ</a></p>
-                    <p><a href="#features-section">Features</a></p>
-                    <p><a href="#privacy-policy">Privacy Policy</a></p>
-                    <p><a href="#terms-of-service">Terms of Service</a></p>
-                    <p><a href="#contact">Contact Us</a></p>
-                </div>
-                
-                <div class="footer-section">
                     <h3>About QR Codes</h3>
                     <p>Learn how QR codes work, best practices for design, and creative ways to use them in your business or personal projects.</p>
                     <p style="margin-top: 1rem;">
@@ -1050,15 +984,9 @@
         // Global variables
         let currentTab = 'text';
         let qr = null;
-        let stats = {
-            generated: parseInt(localStorage.getItem('qr_generated') || '0'),
-            downloads: parseInt(localStorage.getItem('qr_downloads') || '0')
-        };
 
         // Initialize the application
         document.addEventListener('DOMContentLoaded', function() {
-            updateStats();
-            loadHistory();
             generateQR();
             
             // Initialize AdSense (uncomment when ready)
@@ -1162,11 +1090,6 @@
                         level: 'M'
                     });
                     
-                    // Update stats
-                    stats.generated++;
-                    localStorage.setItem('qr_generated', stats.generated.toString());
-                    updateStats();
-                    
                 } catch (error) {
                     console.error('Error generating QR code:', error);
                     showNotification('Error generating QR code', 'error');
@@ -1199,93 +1122,7 @@
             
             link.click();
             
-            // Update download stats
-            stats.downloads++;
-            localStorage.setItem('qr_downloads', stats.downloads.toString());
-            updateStats();
-            
             showNotification(`QR code downloaded as ${format.toUpperCase()}`);
-        }
-
-        // History management
-        function saveToHistory() {
-            if (!qr) {
-                showNotification('Please generate a QR code first', 'error');
-                return;
-            }
-
-            let text = getCurrentQRText();
-            if (!text) return;
-
-            let history = JSON.parse(localStorage.getItem('qr_history') || '[]');
-            
-            // Add new item to beginning of array
-            history.unshift({
-                text: text,
-                type: currentTab,
-                timestamp: Date.now(),
-                canvas: document.getElementById('qrCanvas').toDataURL()
-            });
-            
-            // Keep only last 10 items
-            history = history.slice(0, 10);
-            
-            localStorage.setItem('qr_history', JSON.stringify(history));
-            loadHistory();
-            showNotification('QR code saved to history');
-        }
-
-        function getCurrentQRText() {
-            switch(currentTab) {
-                case 'text':
-                    return document.getElementById('textInput').value;
-                case 'url':
-                    return document.getElementById('urlInput').value;
-                case 'email':
-                    return document.getElementById('emailInput').value;
-                case 'phone':
-                    return document.getElementById('phoneInput').value;
-                case 'wifi':
-                    return document.getElementById('wifiSSID').value;
-                case 'sms':
-                    return document.getElementById('smsNumber').value;
-                default:
-                    return '';
-            }
-        }
-
-        function loadHistory() {
-            const history = JSON.parse(localStorage.getItem('qr_history') || '[]');
-            const historyList = document.getElementById('historyList');
-            
-            if (history.length === 0) {
-                historyList.innerHTML = '<p style="color: var(--text-secondary); font-size: 0.875rem;">Your recent QR codes will appear here</p>';
-                return;
-            }
-            
-            historyList.innerHTML = history.map((item, index) => `
-                <div class="history-item">
-                    <div>
-                        <div class="history-text" title="${item.text}">${item.text}</div>
-                        <div style="font-size: 0.75rem; color: var(--text-secondary);">${item.type.toUpperCase()}</div>
-                    </div>
-                    <button class="delete-btn" onclick="deleteHistoryItem(${index})">×</button>
-                </div>
-            `).join('');
-        }
-
-        function deleteHistoryItem(index) {
-            let history = JSON.parse(localStorage.getItem('qr_history') || '[]');
-            history.splice(index, 1);
-            localStorage.setItem('qr_history', JSON.stringify(history));
-            loadHistory();
-            showNotification('Item removed from history');
-        }
-
-        function clearHistory() {
-            localStorage.removeItem('qr_history');
-            loadHistory();
-            showNotification('History cleared');
         }
 
         // Batch generation
@@ -1341,10 +1178,6 @@
             link.download = `batch-qr-${index + 1}-${Date.now()}.png`;
             link.href = canvas.toDataURL('image/png');
             link.click();
-            
-            stats.downloads++;
-            localStorage.setItem('qr_downloads', stats.downloads.toString());
-            updateStats();
         }
 
         // FAQ functionality
@@ -1376,12 +1209,6 @@
             setTimeout(() => {
                 notification.classList.remove('show');
             }, 3000);
-        }
-
-        // Update statistics
-        function updateStats() {
-            document.getElementById('totalGenerated').textContent = stats.generated;
-            document.getElementById('totalDownloads').textContent = stats.downloads;
         }
 
         // Service Worker for offline functionality
