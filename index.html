@@ -11,14 +11,14 @@
     <meta name="keywords" content="QR code generator, free QR codes, online QR maker, QR code creator, generate QR code, QR scanner, barcode generator">
     <meta name="author" content="QRMaker Pro">
     <meta name="robots" content="index, follow">
-    <link rel="canonical" href="https://yourdomain.github.io/qr-generator/">
+    <link rel="canonical" href="https://freeqrcodegenerator.uz/">
     
     <!-- Open Graph Tags -->
     <meta property="og:title" content="Free QR Code Generator - Create QR Codes Online">
     <meta property="og:description" content="Generate free QR codes instantly for URLs, text, WiFi, and more. Professional QR code maker with customization options.">
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://yourdomain.github.io/qr-generator/">
-    <meta property="og:image" content="https://yourdomain.github.io/qr-generator/og-image.jpg">
+    <meta property="og:url" content="https://freeqrcodegenerator.uz/">
+    <meta property="og:image" content="https://freeqrcodegenerator.uz/">
     
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image">
@@ -28,11 +28,9 @@
     <!-- Favicon -->
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%23000' d='M3 11h8V3H3v8zm2-6h4v4H5V5zM3 21h8v-8H3v8zm2-6h4v4H5v-4zM13 3v8h8V3h-8zm6 6h-4V5h4v4zM19 13h2v2h-2zM13 13h2v2h-2zM15 15h2v2h-2zM13 17h2v2h-2zM15 19h2v2h-2zM17 17h2v2h-2zM17 13h2v2h-2zM19 15h2v2h-2z'/%3E%3C/svg%3E">
     
-    <!-- Google AdSense - UNCOMMENT AND ADD YOUR PUBLISHER ID -->
-    <!-- 
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXX"
+    <!-- Google AdSense Script -->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8391261575156002"
          crossorigin="anonymous"></script>
-    -->
     
     <!-- Schema Markup -->
     <script type="application/ld+json">
@@ -136,15 +134,26 @@
             transform: scale(1.1);
         }
         
-        /* AdSense Placeholder - Header Banner */
-        .ad-banner {
-            background: #f0f0f0;
-            border: 2px dashed #ccc;
-            text-align: center;
-            padding: 20px;
+        /* AdSense Styles */
+        .ad-banner, .ad-sidebar, .ad-footer {
             margin: 20px 0;
-            color: #666;
-            font-size: 14px;
+            text-align: center;
+            min-height: 100px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .ad-banner {
+            min-height: 90px;
+        }
+        
+        .ad-sidebar {
+            min-height: 250px;
+        }
+        
+        .ad-footer {
+            min-height: 90px;
         }
         
         /* Main Content */
@@ -320,55 +329,6 @@
             box-shadow: var(--shadow);
         }
         
-        .sidebar-title {
-            font-size: 1.25rem;
-            margin-bottom: 1rem;
-            color: var(--text-primary);
-        }
-        
-        /* AdSense Placeholder - Sidebar */
-        .ad-sidebar {
-            background: #f0f0f0;
-            border: 2px dashed #ccc;
-            text-align: center;
-            padding: 15px;
-            color: #666;
-            font-size: 12px;
-            min-height: 250px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        
-        .history-item {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 0.5rem;
-            border-radius: 6px;
-            margin-bottom: 0.5rem;
-            background: var(--bg-primary);
-        }
-        
-        .history-text {
-            font-size: 0.875rem;
-            color: var(--text-secondary);
-            max-width: 150px;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            white-space: nowrap;
-        }
-        
-        .delete-btn {
-            background: #ef4444;
-            color: white;
-            border: none;
-            padding: 0.25rem 0.5rem;
-            border-radius: 4px;
-            cursor: pointer;
-            font-size: 0.75rem;
-        }
-        
         /* Features Section */
         .features-section {
             margin: 3rem 0;
@@ -468,42 +428,11 @@
             color: var(--primary-color);
         }
         
-        .social-links {
-            display: flex;
-            gap: 1rem;
-            margin-top: 1rem;
-        }
-        
-        .social-link {
-            display: inline-block;
-            padding: 0.5rem;
-            background: var(--primary-color);
-            color: white;
-            border-radius: 50%;
-            text-decoration: none;
-            transition: all 0.3s ease;
-        }
-        
-        .social-link:hover {
-            transform: scale(1.1);
-        }
-        
         .footer-bottom {
             border-top: 1px solid var(--border-color);
             padding-top: 2rem;
             text-align: center;
             color: var(--text-secondary);
-        }
-        
-        /* AdSense Placeholder - Footer */
-        .ad-footer {
-            background: #f0f0f0;
-            border: 2px dashed #ccc;
-            text-align: center;
-            padding: 20px;
-            margin: 20px 0;
-            color: #666;
-            font-size: 14px;
         }
         
         /* Responsive Design */
@@ -589,17 +518,6 @@
             background: var(--bg-secondary);
             border-radius: 8px;
         }
-        
-        /* Newsletter Signup */
-        .newsletter-form {
-            display: flex;
-            gap: 0.5rem;
-            margin-top: 1rem;
-        }
-        
-        .newsletter-form input {
-            flex: 1;
-        }
     </style>
 </head>
 <body>
@@ -620,14 +538,12 @@
     <!-- AdSense Banner Ad -->
     <div class="container">
         <div class="ad-banner">
-            <!-- Replace with actual AdSense code -->
             <ins class="adsbygoogle"
                  style="display:block"
-                 data-ad-client="ca-pub-XXXXXXXXX"
-                 data-ad-slot="XXXXXXXXX"
+                 data-ad-client="ca-pub-8391261575156002"
+                 data-ad-slot="4752083431"
                  data-ad-format="auto"
                  data-full-width-responsive="true"></ins>
-            <p>AdSense Banner Ad (728x90 or responsive)</p>
         </div>
     </div>
 
@@ -798,18 +714,14 @@
                 <!-- AdSense Sidebar Ad -->
                 <div class="sidebar-section">
                     <div class="ad-sidebar">
-                        <!-- Replace with actual AdSense code -->
                         <ins class="adsbygoogle"
                              style="display:block"
-                             data-ad-client="ca-pub-XXXXXXXXX"
-                             data-ad-slot="XXXXXXXXX"
+                             data-ad-client="ca-pub-8391261575156002"
+                             data-ad-slot="4976278865"
                              data-ad-format="auto"
                              data-full-width-responsive="true"></ins>
-                        <p>AdSense Sidebar Ad<br>(300x250 or responsive)</p>
                     </div>
                 </div>
-
-
             </aside>
 
             <!-- Features Section -->
@@ -930,43 +842,31 @@
         <div class="container">
             <!-- AdSense Footer Ad -->
             <div class="ad-footer">
-                <!-- Replace with actual AdSense code -->
                 <ins class="adsbygoogle"
                      style="display:block"
-                     data-ad-client="ca-pub-XXXXXXXXX"
-                     data-ad-slot="XXXXXXXXX"
+                     data-ad-client="ca-pub-8391261575156002"
+                     data-ad-slot="8225258733"
                      data-ad-format="auto"
                      data-full-width-responsive="true"></ins>
-                <p>AdSense Footer Ad (728x90 or responsive)</p>
             </div>
 
             <div class="footer-content">
                 <div class="footer-section">
                     <h3>QRMaker Pro</h3>
                     <p>The ultimate free QR code generator for all your needs. Create professional QR codes instantly with customization options and multiple download formats.</p>
-                    <div class="social-links">
-                        <a href="#" class="social-link">📘</a>
-                        <a href="#" class="social-link">🐦</a>
-                        <a href="#" class="social-link">📷</a>
-                        <a href="#" class="social-link">💼</a>
-                    </div>
                 </div>
                 
                 <div class="footer-section">
                     <h3>About QR Codes</h3>
                     <p>Learn how QR codes work, best practices for design, and creative ways to use them in your business or personal projects.</p>
                     <p style="margin-top: 1rem;">
-                        <strong>Keywords:</strong> QR code generator, free QR codes, online QR maker, QR code creator, barcode generator
+                        <strong>Keywords:</strong> QR code generator, free QR codes, online QR maker, QR code creator, barcode generator, QR code maker, free QR code maker, free QR code generator, custom QR code maker, online barcode creator, dynamic QR code generator, QR code scanner and generator, make your own QR code, printable QR code generator, create QR codes for free, QR code for website URL, bulk QR code generator, static QR code maker, QR code for business cards, image to QR code converter, free barcode and QR code maker, secure QR code generator
                     </p>
                 </div>
             </div>
             
             <div class="footer-bottom">
-                <p>&copy; 2025 QRMaker Pro. All rights reserved. | 
-                   <a href="#privacy-policy">Privacy Policy</a> | 
-                   <a href="#terms">Terms of Service</a> | 
-                   <a href="#contact">Contact</a>
-                </p>
+                <p>&copy; 2025 QRMaker Pro. All rights reserved.</p>
                 <p style="margin-top: 0.5rem; font-size: 0.875rem;">
                     Made with ❤️ for the QR code community
                 </p>
@@ -989,8 +889,10 @@
         document.addEventListener('DOMContentLoaded', function() {
             generateQR();
             
-            // Initialize AdSense (uncomment when ready)
-            // (adsbygoogle = window.adsbygoogle || []).push({});
+            // Initialize AdSense
+            (adsbygoogle = window.adsbygoogle || []).push({});
+            (adsbygoogle = window.adsbygoogle || []).push({});
+            (adsbygoogle = window.adsbygoogle || []).push({});
         });
 
         // Theme toggle functionality
@@ -1215,16 +1117,6 @@
         if ('serviceWorker' in navigator) {
             navigator.serviceWorker.register('data:text/javascript;base64,c2VsZi5hZGRFdmVudExpc3RlbmVyKCdpbnN0YWxsJywgZnVuY3Rpb24oZXZlbnQpIHsKICBldmVudC53YWl0VW50aWwoc2VsZi5za2lwV2FpdGluZygpKTsKfSk7');
         }
-
-       // Initialize AdSense when ready
-        // Uncomment the following lines and add your AdSense publisher ID
-        /*
-        window.addEventListener('load', function() {
-            (adsbygoogle = window.adsbygoogle || []).push({});
-            (adsbygoogle = window.adsbygoogle || []).push({});
-            (adsbygoogle = window.adsbygoogle || []).push({});
-        });
-        */
     </script>
 </body>
 </html>
