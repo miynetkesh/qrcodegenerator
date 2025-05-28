@@ -210,24 +210,6 @@ function downloadBatchItem(button, text, index) {
     link.click();
 }
 
-// FAQ functionality
-function toggleFAQ(button) {
-    const answer = button.nextElementSibling;
-    const icon = button.querySelector('span');
-    if (answer.classList.contains('active')) {
-        answer.classList.remove('active');
-        icon.textContent = '+';
-    } else {
-        // Close all other FAQs
-        document.querySelectorAll('.faq-answer.active').forEach(item => {
-            item.classList.remove('active');
-            item.previousElementSibling.querySelector('span').textContent = '+';
-        });
-        answer.classList.add('active');
-        icon.textContent = '−';
-    }
-}
-
 // Notification system
 function showNotification(message, type = 'success') {
     const notification = document.getElementById('notification');

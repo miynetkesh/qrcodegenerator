@@ -278,75 +278,7 @@ body {
     box-shadow: var(--shadow);
 }
 
-/* Features Section */
-.features-section {
-    margin: 3rem 0;
-    grid-column: 1 / -1;
-}
-
-.features-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 2rem;
-    margin-top: 2rem;
-}
-
-.feature-card {
-    background: var(--bg-secondary);
-    border-radius: 12px;
-    padding: 2rem;
-    text-align: center;
-    box-shadow: var(--shadow);
-    transition: all 0.3s ease;
-}
-
-.feature-card:hover {
-    transform: translateY(-5px);
-    box-shadow: var(--shadow-lg);
-}
-
-.feature-icon {
-    font-size: 3rem;
-    margin-bottom: 1rem;
-}
-
-/* FAQ Section */
-.faq-section {
-    margin: 3rem 0;
-    grid-column: 1 / -1;
-}
-
-.faq-item {
-    background: var(--bg-secondary);
-    border-radius: 12px;
-    margin-bottom: 1rem;
-    overflow: hidden;
-    box-shadow: var(--shadow);
-}
-
-.faq-question {
-    width: 100%;
-    background: none;
-    border: none;
-    padding: 1.5rem;
-    text-align: left;
-    cursor: pointer;
-    font-weight: 600;
-    color: var(--text-primary);
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.faq-answer {
-    padding: 0 1.5rem 1.5rem;
-    color: var(--text-secondary);
-    display: none;
-}
-
-.faq-answer.active {
-    display: block;
-}
+/* Removed Features and FAQ sections */
 
 /* Footer */
 .footer {
