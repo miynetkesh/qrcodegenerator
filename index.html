@@ -58,9 +58,18 @@
                     <span>📱</span>
                     <span>QR Maker</span>
                 </div>
-                <button class="theme-toggle" onclick="toggleTheme()" title="Toggle Theme">
-                    🌓
-                </button>
+                <div class="header-controls">
+                    <select id="languageSelector" class="language-select" onchange="changeLanguage(this.value)">
+                        <option value="en">English</option>
+                        <option value="ru">Русский</option>
+                        <option value="es">Español</option>
+                        <option value="uz">O'zbekcha</option>
+                        <option value="kaa">Qaraqalpaqsha</option>
+                    </select>
+                    <button class="theme-toggle" onclick="toggleTheme()" title="Toggle Theme">
+                        🌓
+                    </button>
+                </div>
             </div>
         </div>
     </header>
@@ -192,19 +201,19 @@
                         </select>
                     </div>
                     <div class="form-group">
-                        <label class="form-label">Foreground Color:</label>
+                        <label class="form-label" for="fgColor">Foreground Color:</label>
                         <div class="color-input-group">
                             <input type="color" id="fgColor" class="color-input" 
                                    value="#000000" onchange="generateQR()">
-                            <span>Black</span>
-                        </div>
+                                   <p>Black</p>
+                                </div>
                     </div>
                     <div class="form-group">
-                        <label class="form-label">Background Color:</label>
+                        <label class="form-label" for="bgColor">Background Color:</label>
                         <div class="color-input-group">
                             <input type="color" id="bgColor" class="color-input" 
                                    value="#ffffff" onchange="generateQR()">
-                            <span>White</span>
+                                   <p>White</p>
                         </div>
                     </div>
                 </div>
@@ -282,6 +291,266 @@
 
     <!-- QR.js Library -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/qrious/4.0.2/qrious.min.js"></script>
+    <script>
+        // Translations object
+        const translations = {
+            en: {
+                title: "Free QR Code Generator",
+                description: "Create professional QR codes instantly for URLs, text, WiFi, email, and more. Customize colors and sizes, then download in PNG or SVG format.",
+                textTab: "Text",
+                urlTab: "URL",
+                emailTab: "Email",
+                phoneTab: "Phone",
+                wifiTab: "WiFi",
+                smsTab: "SMS",
+                enterText: "Enter your text:",
+                textPlaceholder: "Type any text you want to encode in the QR code...",
+                enterUrl: "Enter URL:",
+                urlPlaceholder: "https://example.com",
+                emailAddress: "Email Address:",
+                emailPlaceholder: "email@example.com",
+                subject: "Subject (optional):",
+                subjectPlaceholder: "Email subject",
+                message: "Message (optional):",
+                messagePlaceholder: "Email message",
+                phoneNumber: "Phone Number:",
+                phonePlaceholder: "+1234567890",
+                networkName: "Network Name (SSID):",
+                networkPlaceholder: "WiFi Network Name",
+                password: "Password:",
+                passwordPlaceholder: "WiFi Password",
+                securityType: "Security Type:",
+                size: "Size:",
+                foregroundColor: "Foreground Color:",
+                backgroundColor: "Background Color:",
+                qrPreview: "QR Code will appear here",
+                downloadPng: "📱 Download PNG",
+                downloadSvg: "📁 Download SVG",
+                batchTitle: "🔄 Batch QR Code Generation",
+                batchDescription: "Enter multiple items (one per line) to generate QR codes in bulk:",
+                batchPlaceholder: "https://example1.com\nhttps://example2.com\nContact Info 1\nContact Info 2",
+                generateBatch: "Generate Batch QR Codes"
+            },
+            ru: {
+                title: "Бесплатный генератор QR-кодов",
+                description: "Создавайте профессиональные QR-коды мгновенно для URL, текста, WiFi, email и многого другого. Настраивайте цвета и размеры, затем скачивайте в формате PNG или SVG.",
+                textTab: "Текст",
+                urlTab: "URL",
+                emailTab: "Email",
+                phoneTab: "Телефон",
+                wifiTab: "WiFi",
+                smsTab: "SMS",
+                enterText: "Введите текст:",
+                textPlaceholder: "Введите любой текст для кодирования в QR-код...",
+                enterUrl: "Введите URL:",
+                urlPlaceholder: "https://example.com",
+                emailAddress: "Email адрес:",
+                emailPlaceholder: "email@example.com",
+                subject: "Тема (необязательно):",
+                subjectPlaceholder: "Тема письма",
+                message: "Сообщение (необязательно):",
+                messagePlaceholder: "Текст письма",
+                phoneNumber: "Номер телефона:",
+                phonePlaceholder: "+1234567890",
+                networkName: "Имя сети (SSID):",
+                networkPlaceholder: "Имя WiFi сети",
+                password: "Пароль:",
+                passwordPlaceholder: "Пароль WiFi",
+                securityType: "Тип безопасности:",
+                size: "Размер:",
+                foregroundColor: "Цвет переднего плана:",
+                backgroundColor: "Цвет фона:",
+                qrPreview: "QR-код появится здесь",
+                downloadPng: "📱 Скачать PNG",
+                downloadSvg: "📁 Скачать SVG",
+                batchTitle: "🔄 Пакетная генерация QR-кодов",
+                batchDescription: "Введите несколько элементов (по одному на строку) для массовой генерации QR-кодов:",
+                batchPlaceholder: "https://example1.com\nhttps://example2.com\nКонтактная информация 1\nКонтактная информация 2",
+                generateBatch: "Сгенерировать пакет QR-кодов"
+            },
+            es: {
+                title: "Generador de códigos QR gratuito",
+                description: "Cree códigos QR profesionales al instante para URLs, texto, WiFi, correo electrónico y más. Personalice colores y tamaños, luego descargue en formato PNG o SVG.",
+                textTab: "Texto",
+                urlTab: "URL",
+                emailTab: "Email",
+                phoneTab: "Teléfono",
+                wifiTab: "WiFi",
+                smsTab: "SMS",
+                enterText: "Ingrese su texto:",
+                textPlaceholder: "Escriba cualquier texto que desee codificar en el código QR...",
+                enterUrl: "Ingrese URL:",
+                urlPlaceholder: "https://example.com",
+                emailAddress: "Dirección de correo:",
+                emailPlaceholder: "email@example.com",
+                subject: "Asunto (opcional):",
+                subjectPlaceholder: "Asunto del correo",
+                message: "Mensaje (opcional):",
+                messagePlaceholder: "Mensaje del correo",
+                phoneNumber: "Número de teléfono:",
+                phonePlaceholder: "+1234567890",
+                networkName: "Nombre de la red (SSID):",
+                networkPlaceholder: "Nombre de la red WiFi",
+                password: "Contraseña:",
+                passwordPlaceholder: "Contraseña WiFi",
+                securityType: "Tipo de seguridad:",
+                size: "Tamaño:",
+                foregroundColor: "Color del primer plano:",
+                backgroundColor: "Color de fondo:",
+                qrPreview: "El código QR aparecerá aquí",
+                downloadPng: "📱 Descargar PNG",
+                downloadSvg: "📁 Descargar SVG",
+                batchTitle: "🔄 Generación por lotes de códigos QR",
+                batchDescription: "Ingrese múltiples elementos (uno por línea) para generar códigos QR en lote:",
+                batchPlaceholder: "https://example1.com\nhttps://example2.com\nInformación de contacto 1\nInformación de contacto 2",
+                generateBatch: "Generar códigos QR en lote"
+            },
+            uz: {
+                title: "Bepul QR kod generatori",
+                description: "URL, matn, WiFi, email va boshqalar uchun professional QR kodlarni tezda yarating. Ranglar va o'lchamlarni sozlang, so'ngra PNG yoki SVG formatida yuklab oling.",
+                textTab: "Matn",
+                urlTab: "URL",
+                emailTab: "Email",
+                phoneTab: "Telefon",
+                wifiTab: "WiFi",
+                smsTab: "SMS",
+                enterText: "Matnni kiriting:",
+                textPlaceholder: "QR kodga kodlash uchun istalgan matnni kiriting...",
+                enterUrl: "URL manzilini kiriting:",
+                urlPlaceholder: "https://example.com",
+                emailAddress: "Email manzili:",
+                emailPlaceholder: "email@example.com",
+                subject: "Mavzu (ixtiyoriy):",
+                subjectPlaceholder: "Xat mavzusi",
+                message: "Xabar (ixtiyoriy):",
+                messagePlaceholder: "Xat matni",
+                phoneNumber: "Telefon raqami:",
+                phonePlaceholder: "+1234567890",
+                networkName: "Tarmoq nomi (SSID):",
+                networkPlaceholder: "WiFi tarmoq nomi",
+                password: "Parol:",
+                passwordPlaceholder: "WiFi paroli",
+                securityType: "Xavfsizlik turi:",
+                size: "O'lcham:",
+                foregroundColor: "Oldingi rang:",
+                backgroundColor: "Orqa rang:",
+                qrPreview: "QR kod bu yerda paydo bo'ladi",
+                downloadPng: "📱 PNG yuklab olish",
+                downloadSvg: "📁 SVG yuklab olish",
+                batchTitle: "🔄 To'plam QR kod generatsiyasi",
+                batchDescription: "Bir nechta elementlarni (har bir qatorga bitta) to'plam QR kodlar yaratish uchun kiriting:",
+                batchPlaceholder: "https://example1.com\nhttps://example2.com\nAloqa ma'lumoti 1\nAloqa ma'lumoti 2",
+                generateBatch: "To'plam QR kodlar yaratish"
+            },
+            kaa: {
+                title: "Biypul QR kod generatorı",
+                description: "URL, tekst, WiFi, email hám basqalar ushın QR kodlardı tez jaratıń. Reńler hám ólshemlerdi sazlań, soń PNG yamasa SVG formatında júklep alıń.",
+                textTab: "Tekst",
+                urlTab: "URL",
+                emailTab: "Email",
+                phoneTab: "Telefon",
+                wifiTab: "WiFi",
+                smsTab: "SMS",
+                enterText: "Tekst kirgiziń:",
+                textPlaceholder: "QR kod ushın tekst kirgiziń...",
+                enterUrl: "URL manzilin kirgiziń:",
+                urlPlaceholder: "https://example.com",
+                emailAddress: "Elektron pochta manzili:",
+                emailPlaceholder: "email@example.com",
+                subject: "Tema (ıqtıyarıy):",
+                subjectPlaceholder: "Xat teması",
+                message: "Xabar (ıqtıyarıy):",
+                messagePlaceholder: "Xat tekstti",
+                phoneNumber: "Telefon nomer:",
+                phonePlaceholder: "+1234567890",
+                networkName: "Tarmaq atı (SSID):",
+                networkPlaceholder: "atı",
+                password: "Parol:",
+                passwordPlaceholder: "paroli",
+                securityType: "Qáwipsizlik túri:",
+                size: "Ólshem:",
+                foregroundColor: "Reń:",
+                backgroundColor: "Arqa fon reńi:",
+                qrPreview: "QR kod usı jerde payda boladı",
+                downloadPng: "📱 PNG júklep alıw",
+                downloadSvg: "📁 SVG júklep alıw	",
+                batchTitle: "🔄 Toplam QR kod generatorı",
+                batchDescription: "Bir neshe elementlerdi kirgiziń (hár qatarǵa bir dana):",
+                batchPlaceholder: "https://example1.com\nhttps://example2.com\nMaǵlıwmat 1\nMaǵlıwmat 2",
+                generateBatch: "Barlıǵın generaciyalaw"
+            }
+        };
+
+        // Function to change language
+        function changeLanguage(lang) {
+            document.documentElement.lang = lang;
+            localStorage.setItem('language', lang);
+            
+            // Update all translatable elements
+            document.querySelector('.section-title').textContent = translations[lang].title;
+            document.querySelector('.section-title').nextElementSibling.textContent = translations[lang].description;
+            
+            // Update tab buttons
+            const tabButtons = document.querySelectorAll('.tab-button');
+            tabButtons[0].textContent = translations[lang].textTab;
+            tabButtons[1].textContent = translations[lang].urlTab;
+            tabButtons[2].textContent = translations[lang].emailTab;
+            tabButtons[3].textContent = translations[lang].phoneTab;
+            tabButtons[4].textContent = translations[lang].wifiTab;
+            tabButtons[5].textContent = translations[lang].smsTab;
+            
+            // Update form labels and placeholders
+            document.querySelector('label[for="textInput"]').textContent = translations[lang].enterText;
+            document.getElementById('textInput').placeholder = translations[lang].textPlaceholder;
+            
+            document.querySelector('label[for="urlInput"]').textContent = translations[lang].enterUrl;
+            document.getElementById('urlInput').placeholder = translations[lang].urlPlaceholder;
+            
+            document.querySelector('label[for="emailInput"]').textContent = translations[lang].emailAddress;
+            document.getElementById('emailInput').placeholder = translations[lang].emailPlaceholder;
+            
+            document.querySelector('label[for="emailSubject"]').textContent = translations[lang].subject;
+            document.getElementById('emailSubject').placeholder = translations[lang].subjectPlaceholder;
+            
+            document.querySelector('label[for="emailBody"]').textContent = translations[lang].message;
+            document.getElementById('emailBody').placeholder = translations[lang].messagePlaceholder;
+            
+            document.querySelector('label[for="phoneInput"]').textContent = translations[lang].phoneNumber;
+            document.getElementById('phoneInput').placeholder = translations[lang].phonePlaceholder;
+            
+            document.querySelector('label[for="wifiSSID"]').textContent = translations[lang].networkName;
+            document.getElementById('wifiSSID').placeholder = translations[lang].networkPlaceholder;
+            
+            document.querySelector('label[for="wifiPassword"]').textContent = translations[lang].password;
+            document.getElementById('wifiPassword').placeholder = translations[lang].passwordPlaceholder;
+            
+            document.querySelector('label[for="wifiSecurity"]').textContent = translations[lang].securityType;
+            
+            document.querySelector('label[for="qrSize"]').textContent = translations[lang].size;
+            document.querySelector('label[for="fgColor"]').textContent = translations[lang].foregroundColor;
+            document.querySelector('label[for="bgColor"]').textContent = translations[lang].backgroundColor;
+            
+            // Update color input group spans
+            document.querySelector('.color-input-group:has(#fgColor) span').textContent = translations[lang].foregroundColor;
+            document.querySelector('.color-input-group:has(#bgColor) span').textContent = translations[lang].backgroundColor;
+            
+            document.querySelector('.qr-preview p').textContent = translations[lang].qrPreview;
+            
+            const downloadButtons = document.querySelectorAll('.btn-group .btn');
+            downloadButtons[0].textContent = translations[lang].downloadPng;
+            downloadButtons[1].textContent = translations[lang].downloadSvg;
+            
+            document.querySelector('.batch-section h3').textContent = translations[lang].batchTitle;
+            document.querySelector('.batch-section p').textContent = translations[lang].batchDescription;
+            document.getElementById('batchInput').placeholder = translations[lang].batchPlaceholder;
+            document.querySelector('.batch-section .btn').textContent = translations[lang].generateBatch;
+        }
+
+        // Load saved language preference
+        const savedLanguage = localStorage.getItem('language') || 'en';
+        document.getElementById('languageSelector').value = savedLanguage;
+        changeLanguage(savedLanguage);
+    </script>
     <script src="main.js"></script>
 </body>
 </html>
