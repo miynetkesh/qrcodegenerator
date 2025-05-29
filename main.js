@@ -188,6 +188,28 @@ function downloadBatchItem(button, text, index) {
     link.click();
 }
 
+// Copy QR code to clipboard
+async function copyQR() {
+    if (!qr) {
+        showNotification('Please generate a QR code first', 'error');
+        return;
+    }
+    
+    const canvas = document.getElementById('qrCanvas');
+    try {
+        // Convert canvas to blob
+        const blob = await new Promise(resolve => canvas.toBlob(resolve));
+        // Create clipboard item
+        const item = new ClipboardItem({ 'image/png': blob });
+        // Copy to clipboard
+        await navigator.clipboard.write([item]);
+        showNotification('QR code copied to clipboard');
+    } catch (error) {
+        console.error('Error copying QR code:', error);
+        showNotification('Failed to copy QR code', 'error');
+    }
+}
+
 // Notification system
 function showNotification(message, type = 'success') {
     const notification = document.getElementById('notification');
